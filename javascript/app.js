@@ -1,5 +1,5 @@
 //Module
-var cricMatch = angular.module('cricMatch',['ngRoute','ngResource']);
+var cricMatch = angular.module('cricMatch',['ngRoute','ngResource','firebase']);
 
 //Routes
 cricMatch.config(function($routeProvider){
@@ -8,19 +8,27 @@ cricMatch.config(function($routeProvider){
     templateUrl:'pages/form.htm',
     controller:'addController',
     controllerAs:'ac'
-  })
-  .when('/show',{
-    templateUrl:'pages/show.htm',
-    controller:'showController',
-    controllerAs:'sc'
-  })
+  });
 });
 
 //Controller
-cricMatch.controller('addController',['$scope','$resource',function($scope,$resource){
+cricMatch.controller('addController',['$scope', '$firebaseArray', '$resource',function($scope, $firebaseArray, $resource){
+  var vm = this;
+  var ref = new Firebase('https://cricmatch.firebaseio.com/Matches');
+  vm.matchData = $firebaseArray(ref);
 
-}]);
+  function Match (){
+    this.teamA = '';
+    this.teamB = '';
+    this.venue = '';
+    this.date = '';
+  }
 
-cricMatch.controller('showController',['$scope','resource',function($scope,$resource){
+  vm.newMatch = new Match();
 
+  vm.addMatch = function(){
+    vm.matchData.$add(vm.newMatch);
+    vm.newMatch = new Match();
+  }
+  console.log(vm.matchData);
 }]);

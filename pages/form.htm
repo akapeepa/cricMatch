@@ -1,32 +1,51 @@
-<div class="jumbotron text-center">
-  <h3>Fix Matches</h1>
-  </div>
-
-  <br>
-
+<div class="container">
   <div class="container">
-    <form class="pure-form pure-form-aligned">
-      <fieldset>
-        <div class="pure-control-group">
-          <label for="name"><h4>Team A</h4></label>
-          <input id="name" type="text" placeholder="">
-        </div>
-
-        <div class="pure-control-group">
-          <label for="password"><h4>Team B</h4></label>
-          <input id="password" type="password" placeholder="">
-        </div>
-
-        <div class="pure-control-group">
-          <label for="email"><h4>Venue</h4></label>
-          <input id="email" type="email" placeholder="">
-        </div>
-
-        <div class="pure-control-group">
-          <label for="foo"><h4>Date</h4></label>
-          <input id="foo" type="text" placeholder="">
-          <a class="pure-button" href="/#/show">Add Match</a>
-        </div>
-      </fieldset>
-    </form>
+    <h2>Upcoming Matches</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Match</th>
+          <th>Venue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="info" ng-repeat="match in ac.matchData">
+          <td>{{match.date}}</td>
+          <td>{{match.teamA}} vs {{match.teamB}}</td>
+          <td>{{match.venue}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<div class="container">
+  <h2>Enter Match Details</h2>
+  <form class="pure-form pure-form-aligned">
+    <fieldset>
+
+      <div class="pure-control-group">
+        <label><h4>Team A</h4></label>
+        <input ng-model = "ac.newMatch.teamA" type="text">
+      </div>
+
+      <div class="pure-control-group">
+        <label><h4>Team B</h4></label>
+        <input ng-model ="ac.newMatch.teamB" type="text">
+      </div>
+
+      <div class="pure-control-group">
+        <label><h4>Venue</h4></label>
+        <input ng-model ="ac.newMatch.venue" type="text">
+      </div>
+
+      <div class="pure-control-group">
+        <label><h4>Date</h4></label>
+        <input ng-model ="ac.newMatch.date" type="text">
+      </div>
+
+      <button  ng-click = 'ac.addMatch()' class="pure-button">Add Match</button>
+    </fieldset>
+  </form>
+</div>
