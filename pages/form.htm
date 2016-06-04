@@ -7,6 +7,7 @@
           <th>Date</th>
           <th>Match</th>
           <th>Venue</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -14,6 +15,7 @@
           <td>{{match.date}}</td>
           <td>{{match.teamA}} vs {{match.teamB}}</td>
           <td>{{match.venue}}</td>
+          <td><a href="" ng-click = "ac.removeMatch(match)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
         </tr>
       </tbody>
     </table>

@@ -17,7 +17,7 @@ cricMatch.controller('addController',['$scope', '$firebaseArray', '$resource',fu
   var ref = new Firebase('https://cricmatch.firebaseio.com/Matches');
   vm.matchData = $firebaseArray(ref);
 
-  function Match (){
+  function Match(){
     this.teamA = '';
     this.teamB = '';
     this.venue = '';
@@ -29,6 +29,10 @@ cricMatch.controller('addController',['$scope', '$firebaseArray', '$resource',fu
   vm.addMatch = function(){
     vm.matchData.$add(vm.newMatch);
     vm.newMatch = new Match();
-  }
+  };
   console.log(vm.matchData);
+  vm.removeMatch = function(match){
+    vm.matchData.$remove(match);
+    console.log("clicked");
+  };
 }]);
